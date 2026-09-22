@@ -5,7 +5,7 @@ include_once '../includes/cabecalho.php';
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-$stmt = $pdo->prepare("SELECT * FROM participantes WHERE id = :id");
+$stmt = $conn->prepare("SELECT * FROM participantes WHERE id = :id");
 $stmt->execute([':id' => $id]);
 $p = $stmt->fetch();
 

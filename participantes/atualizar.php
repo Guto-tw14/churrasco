@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     pago = :pago 
                 WHERE id = :id";
         
-        $stmt = $pdo->prepare($sql);
+        $stmt = $conn->prepare($sql);
         $stmt->execute([
             ':nome' => $nome,
             ':turma' => $turma,
