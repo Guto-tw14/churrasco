@@ -15,7 +15,7 @@ create table participantes(
     telefone VARCHAR(20),
     tipo_churrasco VARCHAR(30) NOT NULL,
     acompanhamento VARCHAR(50),
-    confirmado BOOLEAN NOT NULL
+    confirmado BOOLEAN NOT NULL,
     pago BOOLEAN NOT NULL
 );
 
