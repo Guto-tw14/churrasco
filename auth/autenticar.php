@@ -10,6 +10,8 @@ if($resultado){
     header("Location: ../index.php");
 }
 else{
+    session_start();
+    session_destroy();
     echo "<script>
         alert('Email ou senha incorretos');
         window.location.href = '../auth/login.php';
