@@ -15,8 +15,12 @@ $tipo = $_POST['tipo'];
 $presenca = isset($_POST['presenca']) ? 1 : 0;
 $pagamento = isset($_POST['pagamento']) ? 1 : 0;
 
-$sql = "INSERT INTO participantes (nome, turma, telefone, acompanhamento, tipo, presenca, pagamento)
+$sql = "INSERT INTO participantes (nome, turma, telefone, acompanhamento, tipo_churrasco, confirmado, pago)
 VALUES ('$nome', '$turma', '$telefone', '$acompanhamento', '$tipo', $presenca, $pagamento)";
 
 $conn->query($sql);
+
+echo "<script>alert('Participante cadastrado com sucesso!');
+window.location.href = '../index.php';</script>";
+
 ?>

@@ -23,15 +23,15 @@ include "../includes/verificar_login.php";
         </label>
         <label>
             <span>Telefone</span>
-            <input type="text" name="telefone" required>
+            <input type="text" name="telefone">
         </label>
         <label>
             <span>Acompanhamento</span>
-            <input type="text" name="acompanhamento" required>
+            <input type="text" name="acompanhamento">
         </label>
         <label>
             <span>Tipo de churrasco</span>
-            <select name="tipo">
+            <select name="tipo" required>
                 <option value="tradicional">tradicional</option>
                 <option value="vegano">vegano</option>
             </select>
