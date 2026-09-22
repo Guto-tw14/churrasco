@@ -49,11 +49,42 @@ $participantes = $stmt->fetchAll();
             </div>
             <label>Pagamento:</label>
             <select name="filtro_pago" onchange="this.form.submit()">
-                <option value="todos" <?php if ($filtro_pago === 'todos') echo 'selected'; ?>>Todos</option>
-                <option value="sim" <?php if ($filtro_pago === 'sim') echo 'selected'; ?>>Pago</option>
-                <option value="nao" <?php if ($filtro_pago === 'nao') echo 'selected'; ?>>Não Pago</option>
+                    <option value="todos" <?php if ($filtro_pago === 'todos') echo 'selected'; ?>>Todos</option>
+                    <option value="sim" <?php if ($filtro_pago === 'sim') echo 'selected'; ?>>Pago</option>
+                    <option value="nao" <?php if ($filtro_pago === 'nao') echo 'selected'; ?>>Não Pago</option>
             </select>
+            <label>Presença:</label>
+            <select name="confirmado" onchange="this.form.submit()">
+                <option value="todos" <?php if ($filtro_confirmado === 'todos') echo 'selected'; ?>>Todos</option>
+                <option value="sim" <?php if ($filtro_confirmado === 'sim') echo 'selected'; ?>>Confirmado</option>
+                <option value="nao" <?php if ($filtro_confirmado === 'nao') echo 'selected'; ?>>Não Confirmado</option>
+            </select>
+            
+            <a href="listar.php">Limpar Filtros</a>
+        </div>
+</form>
 
-            <div>
-    </div>
-    
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Turma</th>
+            <th>Tipo</th>
+            <th>Presença</th>
+            <th>Pagamento</th>
+            <th>Situação da Inscrição</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+        <thead>
+        <?php foreach ($participantes as $participante): ?>
+            <tr>
+                <td><?php echo htmlspecialchars($participante['nome']); ?></td>
+                <td><?php echo htmlspecialchars($participante['email']); ?></td>
+                <td><?php echo htmlspecialchars($participante['telefone']); ?></td>
+                <td><?php echo $participante['pago'] ? 'Pago' : 'Não Pago'; ?></td>
+                <td><?php echo $participante['confirmado'] ? 'Confirmado' : 'Não Confirmado'; ?></td>
+            </tr>
+        </thead>
+        <tbody>
+        <?php endforeach; ?>
