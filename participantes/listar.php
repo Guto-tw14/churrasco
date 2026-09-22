@@ -30,7 +30,7 @@ if (($filtro_confirmado === 'sim')) {
 
 $sql .= " ORDER BY nome ASC";
 
-$stmt = $pdo->prepare($sql);
+$stmt = $cone->prepare($sql);
 $stmt->execute($params);
 $participantes = $stmt->fetchAll();
 ?>
@@ -47,7 +47,13 @@ $participantes = $stmt->fetchAll();
                 <input type="text" name="pesquisa" id="pesquisa" value="<?php echo htmlspecialchars($pesquisa); ?>">
                 <button type="submit">Pesquisar</button>
             </div>
-            
+            <label>Pagamento:</label>
+            <select name="filtro_pago" onchange="this.form.submit()">
+                <option value="todos" <?php if ($filtro_pago === 'todos') echo 'selected'; ?>>Todos</option>
+                <option value="sim" <?php if ($filtro_pago === 'sim') echo 'selected'; ?>>Pago</option>
+                <option value="nao" <?php if ($filtro_pago === 'nao') echo 'selected'; ?>>Não Pago</option>
+            </select>
+
             <div>
     </div>
     
