@@ -30,7 +30,7 @@ if (($filtro_confirmado === 'sim')) {
 
 $sql .= " ORDER BY nome ASC";
 
-$stmt = $cone->prepare($sql);
+$stmt = $conn->prepare($sql);
 $stmt->execute($params);
 $participantes = $stmt->fetchAll();
 ?>
