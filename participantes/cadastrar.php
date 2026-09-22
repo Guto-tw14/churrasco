@@ -1,12 +1,18 @@
+<?php
+include "../includes/verificar_login.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <form action="">
+    <form action="salvar.php" method="POST">
         <label>
             <span>Nome</span>
             <input type="text" name="nome" required>
@@ -20,12 +26,15 @@
             <input type="text" name="telefone" required>
         </label>
         <label>
-            <span>Tipo de churrasco</span>
-            <input type="text" name="tipo" required>
-        </label>
-        <label>
             <span>Acompanhamento</span>
             <input type="text" name="acompanhamento" required>
+        </label>
+        <label>
+            <span>Tipo de churrasco</span>
+            <select name="tipo">
+                <option value="tradicional">tradicional</option>
+                <option value="vegano">vegano</option>
+            </select>
         </label>
         <label>
             <span>Presença confirmada</span>
@@ -35,6 +44,8 @@
             <span>Pagamento realizado</span>
             <input type="checkbox" name="pagamento">
         </label>
+        <input type="submit" value="enviar">
     </form>
 </body>
+
 </html>
