@@ -18,3 +18,7 @@ create table participantes(
     confirmado BOOLEAN NOT NULL
     pago BOOLEAN NOT NULL
 );
+
+insert into usuarios (nome, email, senha) values
+('augusto', 'augusto@email.com', '1234'),
+('vitor', 'vitor@email.com', '1234');
