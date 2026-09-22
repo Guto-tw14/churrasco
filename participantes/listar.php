@@ -76,15 +76,49 @@ $participantes = $stmt->fetchAll();
             <th>Ações</th>
         </tr>
     </thead>
-        <thead>
-        <?php foreach ($participantes as $participante): ?>
+    <tbody>
+        <?php if (count($participantes) > 0): ?>
+            <?php foreach ($participantes as $p): ?>
+                <?php
+                if ($p['confirmado'] && $p['pago']) {
+                    $situacao = "INSCRIÇÃO REGULARIZADA";
+                    $classe_situacao = "regularizada";
+                } elseif ($p['confirmado'] && !$p['pago']) {
+                    $situacao = "PAGAMENTO PENDENTE";
+                    $classe_situacao = "pendente";
+                } else {
+                    $situacao = "AGUARDANDO CONFIRMAÇÃO";
+                    $classe_situacao = "aguardando";
+                }
+                ?>
+                <tr>
+                    <td><?= htmlspecialchars($p['nome']) ?></td>
+                    <td><?= htmlspecialchars($p['turma']) ?></td>
+                    <td><?= htmlspecialchars($p['tipo_churrasco']) ?></td>
+                    <td>
+                        <?= $p['confirmado'] ? 'Confirmado' : 'Não confirmado' ?><br>
+                        <a href="alterar_status.php?id=<?= $p['id'] ?>&campo=confirmado&valor=<?= $p['confirmado'] ? 0 : 1 ?>">
+                            [<?= $p['confirmado'] ? 'Cancelar confirmação' : 'Confirmar presença' ?>]
+                        </a>
+                    </td>
+                    <td>
+                        <?= $p['pago'] ? 'Pago' : 'Pendente' ?><br>
+                        <a href="alterar_status.php?id=<?= $p['id'] ?>&campo=pago&valor=<?= $p['pago'] ? 0 : 1 ?>">
+                            [<?= $p['pago'] ? 'Desmarcar pagamento' : 'Confirmar pagamento' ?>]
+                        </a>
+                    </td>
+                    <td><strong><?= $situacao ?></strong></td>
+                    <td>
+                        <a href="editar.php?id=<?= $p['id'] ?>">Editar</a> | 
+                        <a href="excluir.php?id=<?= $p['id'] ?>" onclick="return confirmarExclusao(event)">Excluir</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
             <tr>
-                <td><?php echo htmlspecialchars($participante['nome']); ?></td>
-                <td><?php echo htmlspecialchars($participante['email']); ?></td>
-                <td><?php echo htmlspecialchars($participante['telefone']); ?></td>
-                <td><?php echo $participante['pago'] ? 'Pago' : 'Não Pago'; ?></td>
-                <td><?php echo $participante['confirmado'] ? 'Confirmado' : 'Não Confirmado'; ?></td>
+                <td colspan="7">Nenhum participante encontrado.</td>
             </tr>
-        </thead>
-        <tbody>
-        <?php endforeach; ?>
+        <?php endif; ?>
+    </tbody>
+</table>
+<?php include_once '../includes/rodape.php'; ?>
