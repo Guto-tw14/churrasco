@@ -2,16 +2,17 @@
 include "../includes/verificar_login.php";
 include "../config/conexao.php";
 
-if(!isset($_POST['nome']) || !isset($_POST['turma']) || !isset($_POST['telefone']) || !isset($_POST['tipo']) || !isset($_POST['acompanhamento'])){
-    echo "<script>alert('Preencha todos os campos!');
+$nome = trim($_POST['nome'] ?? '');
+$turma = trim($_POST['turma'] ?? '');
+$telefone = trim($_POST['telefone'] ?? '');
+$acompanhamento = trim($_POST['acompanhamento'] ?? '');
+$tipo = trim($_POST['tipo'] ?? '');
+
+if ($nome === '' || $turma === '' || $tipo === '') {
+    echo "<script>alert('Preencha nome, turma e tipo de churrasco.');
     window.location.href = 'cadastrar.php';</script>";
     exit;
 }
-$nome = $_POST['nome'];
-$turma = $_POST['turma'];
-$telefone = $_POST['telefone'];
-$acompanhamento = $_POST['acompanhamento'];
-$tipo = $_POST['tipo'];
 $presenca = isset($_POST['presenca']) ? 1 : 0;
 $pagamento = isset($_POST['pagamento']) ? 1 : 0;
 
