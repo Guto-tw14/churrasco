@@ -1,20 +1,21 @@
 <?php
 include "../config/conexao.php";
-$sql = "SELECT * FROM usuarios WHERE email = '{$_POST['email']}' AND senha = '{$_POST['senha']}'";
-$res = $conn->query($sql);
-$resultado = $res->fetch_assoc();
-if($resultado){
+$email = $_POST['email'] ?? '';
+$senha = $_POST['senha'] ?? '';
+
+$consulta = $conn->prepare("SELECT id, email, senha FROM usuarios WHERE email = ?");
+$consulta->bind_param("s", $email);
+$consulta->execute();
+$resultado = $consulta->get_result()->fetch_assoc();
+
+$senha_valida = $resultado && password_verify($senha, $resultado['senha']);
+
+if ($senha_valida) {
     session_start();
     $_SESSION['email'] = $resultado['email'];
-    $_SESSION['senha'] = $resultado['senha'];
     header("Location: ../index.php");
+    exit();
 }
-else{
-    session_start();
-    session_destroy();
-    echo "<script>
-        alert('Email ou senha incorretos');
-        window.location.href = '../auth/login.php';
-    </script>";
-}
-?>
+
+header("Location: login.php?erro=1");
+exit();

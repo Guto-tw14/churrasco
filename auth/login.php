@@ -1,6 +1,9 @@
 <?php
 $titulo_pagina = 'Entrar';
 include_once '../includes/cabecalho.php';
+if (isset($_GET['erro']) && $_GET['erro'] === '1') {
+    echo "<script>alert('Email ou senha incorretos');</script>";
+}
 ?>
 <section class="mx-auto grid max-w-5xl overflow-hidden rounded-2xl border border-[#d9dfd5] bg-white shadow-sm md:grid-cols-2">
     <div class="relative flex min-h-64 flex-col justify-between overflow-hidden bg-[#174b3a] p-7 text-white sm:p-10 md:min-h-[440px]">

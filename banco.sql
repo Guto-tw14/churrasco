@@ -5,7 +5,7 @@ create table usuarios(
     id int primary key auto_increment,
     nome varchar(100) not null,
     email varchar(100) not null unique,
-    senha varchar(100) not null
+    senha varchar(255) not null
 );
 
 create table participantes(
@@ -20,5 +20,5 @@ create table participantes(
 );
 
 insert into usuarios (nome, email, senha) values
-('augusto', 'augusto@email.com', '1234'),
-('vitor', 'vitor@email.com', '1234');
+('augusto', 'augusto@email.com', '$2y$10$o.EIJ.bqajROmddPQY0yNeI8zcQqId6jHqUu/lWgoQUxA6RI9S5P6'),
+('vitor', 'vitor@email.com', '$2y$10$/SDJ1v.edmdyp3/7ZGVN0usLhVilU0Ps0pfVkzzeXPXUpF.3ECUnG');
