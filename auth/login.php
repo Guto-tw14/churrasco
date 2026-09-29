@@ -6,7 +6,7 @@ include_once '../includes/cabecalho.php';
     <div class="relative flex min-h-64 flex-col justify-between overflow-hidden bg-[#174b3a] p-7 text-white sm:p-10 md:min-h-[440px]">
         <div class="relative">
             <p class="text-xs font-bold uppercase tracking-[0.2em] text-[#e8b99c]">Semana Farroupilha</p>
-            <h1 class="mt-5 max-w-sm font-display text-4xl leading-tight sm:text-5xl">O encontro começa por aqui.</h1>
+            <h1 class="mt-5 max-w-sm font-display text-4xl leading-tight sm:text-5xl">Churrasco dos guris.</h1>
         </div>
         <p class="relative mt-10 max-w-xs text-sm leading-6 text-white/75">Acesse o painel para acompanhar inscrições, presenças e pagamentos do churrasco.</p>
     </div>

@@ -49,7 +49,7 @@ include_once '../includes/cabecalho.php';
         </div>
 
         <div class="flex flex-col-reverse gap-2 border-t border-[#e7ebe4] pt-4 sm:col-span-2 sm:flex-row sm:justify-end">
-            <a href="listar.php" class="inline-flex items-center justify-center rounded-lg border border-[#cbd5cb] px-5 py-3 text-sm font-bold text-[#39584a] transition hover:bg-[#f6f8f4]">Cancelar</a>
+            <a href="listar.php" onclick="if (history.length > 1) { history.back(); return false; }" class="inline-flex items-center justify-center rounded-lg border border-[#cbd5cb] px-5 py-3 text-sm font-bold text-[#39584a] transition hover:bg-[#f6f8f4]">Cancelar</a>
             <button type="submit" class="inline-flex items-center justify-center rounded-lg bg-[#174b3a] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#103b2d]">Salvar inscrição</button>
         </div>
     </form>
