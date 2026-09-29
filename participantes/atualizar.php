@@ -14,26 +14,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!empty($nome) && !empty($turma) && !empty($tipo_churrasco) && $id > 0) {
         $sql = "UPDATE participantes SET 
-                    nome = :nome, 
-                    turma = :turma, 
-                    telefone = :telefone, 
-                    tipo_churrasco = :tipo_churrasco, 
-                    acompanhamento = :acompanhamento, 
-                    confirmado = :confirmado, 
-                    pago = :pago 
-                WHERE id = :id";
+                    nome = ?, 
+                    turma = ?, 
+                    telefone = ?, 
+                    tipo_churrasco = ?, 
+                    acompanhamento = ?, 
+                    confirmado = ?, 
+                    pago = ? 
+                WHERE id = ?";
         
         $stmt = $conn->prepare($sql);
-        $stmt->execute([
-            ':nome' => $nome,
-            ':turma' => $turma,
-            ':telefone' => $telefone,
-            ':tipo_churrasco' => $tipo_churrasco,
-            ':acompanhamento' => $acompanhamento,
-            ':confirmado' => $confirmado,
-            ':pago' => $pago,
-            ':id' => $id
-        ]);
+        $stmt->bind_param(
+            'sssssiii',
+            $nome,
+            $turma,
+            $telefone,
+            $tipo_churrasco,
+            $acompanhamento,
+            $confirmado,
+            $pago,
+            $id
+        );
+        $stmt->execute();
     }
 }
 

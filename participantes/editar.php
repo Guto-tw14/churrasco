@@ -5,9 +5,10 @@ include_once '../includes/cabecalho.php';
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-$stmt = $conn->prepare("SELECT * FROM participantes WHERE id = :id");
-$stmt->execute([':id' => $id]);
-$p = $stmt->fetch();
+$stmt = $conn->prepare("SELECT * FROM participantes WHERE id = ?");
+$stmt->bind_param('i', $id);
+$stmt->execute();
+$p = $stmt->get_result()->fetch_assoc();
 
 if (!$p) {
     echo "<p>Participante não encontrado!</p>";
@@ -50,15 +51,15 @@ if (!$p) {
     </div><br>
 
     <div>
-        <label>Presença Confirmada?</label><br>
-        <input type="radio" name="confirmado" value="1" <?= $p['confirmado'] ? 'checked' : '' ?>> Sim
-        <input type="radio" name="confirmado" value="0" <?= !$p['confirmado'] ? 'checked' : '' ?>> Não
+        <label for="confirmado">Presença Confirmada?</label><br>
+        <input type="hidden" name="confirmado" value="0">
+        <input type="checkbox" name="confirmado" id="confirmado" value="1" <?= $p['confirmado'] ? 'checked' : '' ?>> Sim
     </div><br>
 
     <div>
-        <label>Pagamento Realizado?</label><br>
-        <input type="radio" name="pago" value="1" <?= $p['pago'] ? 'checked' : '' ?>> Sim
-        <input type="radio" name="pago" value="0" <?= !$p['pago'] ? 'checked' : '' ?>> Não
+        <label for="pago">Pagamento Realizado?</label><br>
+        <input type="hidden" name="pago" value="0">
+        <input type="checkbox" name="pago" id="pago" value="1" <?= $p['pago'] ? 'checked' : '' ?>> Sim
     </div><br>
 
     <button type="submit">Salvar Alterações</button>

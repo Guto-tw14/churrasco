@@ -5,8 +5,9 @@ require_once '../config/conexao.php';
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 if ($id > 0) {
-    $stmt = $pdo->prepare("DELETE FROM participantes WHERE id = :id");
-    $stmt->execute([':id' => $id]);
+    $stmt = $conn->prepare("DELETE FROM participantes WHERE id = ?");
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
 }
 
 header("Location: listar.php");

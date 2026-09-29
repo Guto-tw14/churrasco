@@ -6,3 +6,16 @@ function confirmarExclusao(event) {
     }
     return true;
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const formularioFiltros = document.querySelector("#form-filtro-participantes");
+    if (!formularioFiltros) {
+        return;
+    }
+
+    formularioFiltros.querySelectorAll("select").forEach(function (filtro) {
+        filtro.addEventListener("change", function () {
+            formularioFiltros.submit();
+        });
+    });
+});

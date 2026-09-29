@@ -3,16 +3,16 @@ require_once 'includes/verificar_login.php';
 require_once 'config/conexao.php';
 include_once 'includes/cabecalho.php';
 
-$total_inscritos = $pdo->query("SELECT COUNT(*) FROM participantes")->fetchColumn();
+$total_inscritos = $conn->query("SELECT COUNT(*) FROM participantes")->fetch_row()[0];
 
-$confirmados = $pdo->query("SELECT COUNT(*) FROM participantes WHERE confirmado = 1")->fetchColumn();
-$nao_confirmados = $pdo->query("SELECT COUNT(*) FROM participantes WHERE confirmado = 0")->fetchColumn();
+$confirmados = $conn->query("SELECT COUNT(*) FROM participantes WHERE confirmado = 1")->fetch_row()[0];
+$nao_confirmados = $conn->query("SELECT COUNT(*) FROM participantes WHERE confirmado = 0")->fetch_row()[0];
 
-$pagos = $pdo->query("SELECT COUNT(*) FROM participantes WHERE pago = 1")->fetchColumn();
-$pendentes = $pdo->query("SELECT COUNT(*) FROM participantes WHERE pago = 0")->fetchColumn();
+$pagos = $conn->query("SELECT COUNT(*) FROM participantes WHERE pago = 1")->fetch_row()[0];
+$pendentes = $conn->query("SELECT COUNT(*) FROM participantes WHERE pago = 0")->fetch_row()[0];
 
-$tradicional = $pdo->query("SELECT COUNT(*) FROM participantes WHERE tipo_churrasco = 'Tradicional'")->fetchColumn();
-$vegetariano = $pdo->query("SELECT COUNT(*) FROM participantes WHERE tipo_churrasco = 'Vegetariano'")->fetchColumn();
+$tradicional = $conn->query("SELECT COUNT(*) FROM participantes WHERE tipo_churrasco = 'Tradicional'")->fetch_row()[0];
+$vegetariano = $conn->query("SELECT COUNT(*) FROM participantes WHERE tipo_churrasco = 'Vegetariano'")->fetch_row()[0];
 ?>
 
 <h2>CHURRASCO DA SEMANA FARROUPILHA</h2>

@@ -9,29 +9,30 @@ include "../includes/verificar_login.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="../js/validar_form.js" defer></script>
 </head>
 
 <body>
-    <form action="salvar.php" method="POST">
+    <form id="form-cadastro-participante" action="salvar.php" method="POST" novalidate>
         <label>
             <span>Nome</span>
-            <input type="text" name="nome" required>
+            <input type="text" name="nome" id="nome" required>
         </label>
         <label>
             <span>Turma</span>
-            <input type="text" name="turma" required>
+            <input type="text" name="turma" id="turma" required>
         </label>
         <label>
             <span>Telefone</span>
-            <input type="text" name="telefone">
+            <input type="text" name="telefone" id="telefone">
         </label>
         <label>
             <span>Acompanhamento</span>
-            <input type="text" name="acompanhamento">
+            <input type="text" name="acompanhamento" id="acompanhamento">
         </label>
         <label>
             <span>Tipo de churrasco</span>
-            <select name="tipo" required>
+            <select name="tipo" id="tipo" required>
                 <option value="tradicional">tradicional</option>
                 <option value="vegano">vegano</option>
             </select>
