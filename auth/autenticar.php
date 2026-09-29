@@ -8,9 +8,7 @@ $consulta->bind_param("s", $email);
 $consulta->execute();
 $resultado = $consulta->get_result()->fetch_assoc();
 
-$senha_valida = $resultado && password_verify($senha, $resultado['senha']);
-
-if ($senha_valida) {
+if (password_verify($senha, $resultado['senha'])) {
     session_start();
     $_SESSION['email'] = $resultado['email'];
     header("Location: ../index.php");
